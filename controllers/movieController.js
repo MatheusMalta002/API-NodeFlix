@@ -38,3 +38,19 @@ exports.createMovie = async (req, res) => {
         })
     }
 }
+
+exports.deleteMovie = async (req, res) => {
+
+    try{
+        await Movie.findByIdAndDelete(req.params.id)
+        res.status(204).json({
+            status: 'Ok',
+            data: null
+        })
+    }catch(err){
+        res.status(404).json({
+            status: 'fail',
+            message: `ERROR => ${err}`
+        })
+    }
+}

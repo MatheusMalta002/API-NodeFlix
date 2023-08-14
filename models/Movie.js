@@ -12,7 +12,7 @@ const movieSchema = new mongoose.Schema({
       default: 6.5
     },
     releaseDate:{
-      type: Date,
+      type: String,
       required: [true, 'A movie must have a release date'],
     },
     directorName:{
