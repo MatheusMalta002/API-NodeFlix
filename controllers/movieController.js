@@ -6,7 +6,7 @@ exports.getAllMovies = async (req, res) => {
     try{
         const movies = await Movie.find()
         res.status(200).json({
-            status: 'Ok',
+            status: 'ok',
             data: { movies }
         })
     }catch(err){

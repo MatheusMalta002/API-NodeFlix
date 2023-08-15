@@ -4,7 +4,6 @@ require('dotenv').config()
 const DB_NAME = process.env.DB_NAME
 const DB_PASSWORD = process.env.DB_PASSWORD
 
-
 const testDBUrl = `mongodb+srv://${DB_NAME}:${DB_PASSWORD}@cluster0.ksurkpy.mongodb.net/?retryWrites=true&w=majority`
 
 // conectando ao banco de dados
