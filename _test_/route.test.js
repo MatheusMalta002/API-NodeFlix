@@ -55,8 +55,28 @@ describe('Test my app', () => {
     expect(updateResponse.body.status).toBe('Ok');
   });
 
-
   //DELETE
+  test('should delete a movie', async () => {
+    // Primeiro, criando um filme para deletar
+    const newMovie = {
+      movieName: 'Test Movie 3',
+      movieRating: 6.0,
+      releaseDate: '2023-03-20', 
+      directorName: 'Test Director',
+    };
+
+    const createResponse = await request(app).post('/api/movies').send(newMovie);
+    expect(createResponse.status).toBe(201);
+    expect(createResponse.body.status).toBe('Ok');
+
+    // Em seguida, delete o filme criado
+    const movieId = createResponse.body.data.movie._id;
+
+    const deleteResponse = await request(app).delete(`/api/movies/${movieId}`);
+
+    expect(deleteResponse.status).toBe(200);
+    expect(deleteResponse.body.status).toBe('Ok');
+  });
 
 });
 
