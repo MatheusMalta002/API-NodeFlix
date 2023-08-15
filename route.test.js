@@ -15,7 +15,7 @@ describe('Test my app', () => {
   //POST
   test('should create a new movie', async () => {
     const newMovie = {
-      movieName: 'Test Movie 2',
+      movieName: 'Test Movie 1',
       movieRating: 8.5,
       releaseDate: '2023-01-01', 
       directorName: 'Test Director',
@@ -28,6 +28,33 @@ describe('Test my app', () => {
   }); 
 
   //PACTH
+  test('should update a movie', async () => {
+    // Primeiro, criando um filme para atualizar
+    const newMovie = {
+      movieName: 'Test Movie 2',
+      movieRating: 7.5,
+      releaseDate: '2023-02-15', 
+      directorName: 'Test Director',
+    };
+
+    const createResponse = await request(app).post('/api/movies').send(newMovie);
+    expect(createResponse.status).toBe(201);
+    expect(createResponse.body.status).toBe('Ok');
+
+    // Em seguida, atualizando o filme criado
+    const movieId = createResponse.body.data.movie._id;
+
+    const updatedMovie = {
+      movieName: 'Updated Movie Paia',
+      movieRating: 9.0,
+    };
+
+    const updateResponse = await request(app).patch(`/api/movies/${movieId}`).send(updatedMovie);
+
+    expect(updateResponse.status).toBe(200);
+    expect(updateResponse.body.status).toBe('Ok');
+  });
+
 
   //DELETE
 
